@@ -11,8 +11,8 @@
 var ball2 = {
   posX: 200,
   posY: 200,
-  speedX: -8,
-  speedY: 2,
+  speedX: -6,
+  speedY: 4,
   diameter: 80,
 };
 
