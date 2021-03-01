@@ -1,12 +1,40 @@
 //*****************/
 //*****************/
- var ball1 = {
+var ball1 = {
   posX: 200,
   posY: 200,
   speedX: 10,
   speedY: 8,
   diameter: 50,
+
+  movePos: function() {
+    this.posY = this.posY + this.speedY;
+    this.posX = this.posX + this.speedX;
+  },
+
+  borderCheck: function() {
+    if (this.posX >= width - (this.diameter / 2)) {
+      this.speedX = this.speedX * -1;
+      this.posX = width - (this.diameter / 2);
+    } else if (this.posX < this.diameter / 2) {
+      this.posX = (this.diameter / 2);
+      this.speedX = this.speedX * -1;
+    }
+    if (this.posY >= height - (this.diameter / 2)) {
+      this.speedY = this.speedY * -1;
+      this.posY = height - (this.diameter / 2);
+    } else if (this.posY < this.diameter / 2) {
+      this.posY = (this.diameter / 2);
+      this.speedY = this.speedY * -1;
+    }
+
+
+
+    fill(0, 255, 255);
+    ellipse(this.posX, this.posY, this.diameter);
+  },
 };
+
 
 var ball2 = {
   posX: 200,
@@ -14,84 +42,63 @@ var ball2 = {
   speedX: -5,
   speedY: 8,
   diameter: 80,
+  movePos: function() {
+    this.posY = this.posY + this.speedY;
+    this.posX = this.posX + this.speedX;
+  },
+
+  borderCheck: function() {
+    if (this.posX >= width - (this.diameter / 2)) {
+      this.speedX = this.speedX * -1;
+      this.posX = width - (this.diameter / 2);
+    } else if (this.posX < this.diameter / 2) {
+      this.posX = (this.diameter / 2);
+      this.speedX = this.speedX * -1;
+    }
+    if (this.posY >= height - (this.diameter / 2)) {
+      this.speedY = this.speedY * -1;
+      this.posY = height - (this.diameter / 2);
+    } else if (this.posY < this.diameter / 2) {
+      this.posY = (this.diameter / 2);
+      this.speedY = this.speedY * -1;
+    }
+
+
+
+    fill(255, 0, 0);
+    ellipse(this.posX, this.posY, this.diameter);
+  },
 };
 
 
 
 function setup() {
-  createCanvas(windowWidth, windowHeight );
+  createCanvas(windowWidth, windowHeight);
 
-slider = createSlider(25, 100, 100);
-slider.position(10, 10);
-slider.style('width', '100px');
+  slider = createSlider(25, 100, 100);
+  slider.position(10, 10);
+  slider.style('width', '100px');
 
 
-//randomize ball starting location
-ball1.posX = random(25, 375)
-ball1.posY = random(25, 375)
-ball2.posX = random(25, 375)
-ball2.posY = random(25, 375)
+  //randomize ball starting location
+  ball1.posX = random(25, 375)
+  ball1.posY = random(25, 375)
+  ball2.posX = random(25, 375)
+  ball2.posY = random(25, 375)
 }
 
 
 function draw() {
   background(255, 255, 255, 75);
 
-ball1.diameter = slider.value();
-ball2.diameter = slider.value();
+  ball1.diameter = slider.value();
+  ball2.diameter = slider.value();
 
-//moves ball 1
-  ball1.posY = ball1.posY + ball1.speedY;
-  ball1.posX = ball1.posX + ball1.speedX;
+  //moves balls
+  ball1.movePos();
+  ball2.movePos();
 
-
-//moves ball 2
-  ball2.posY = ball2.posY + ball2.speedY;
-  ball2.posX = ball2.posX + ball2.speedX;
-
-
-//checks/corrects ball 1 from going out of canvas
-  if (ball1.posX >= width - (ball1.diameter / 2)) {
-    ball1.speedX = ball1.speedX * -1;
-    ball1.posX = width - (ball1.diameter / 2);
-  } else if (ball1.posX < ball1.diameter / 2) {
-    ball1.posX = (ball1.diameter / 2);
-    ball1.speedX = ball1.speedX * -1;
-  }
- if (ball1.posY >= height - (ball1.diameter / 2)) {
-    ball1.speedY = ball1.speedY * -1;
-    ball1.posY = height - (ball1.diameter / 2);
-  } else if (ball1.posY < ball1.diameter / 2) {
-    ball1.posY = (ball1.diameter / 2);
-    ball1.speedY = ball1.speedY * -1;
-  }
- 
- 
-  //colour of ball 1
-  fill(255, 0, 0);
-  ellipse(ball1.posX, ball1.posY, ball1.diameter);
-
-
-//checks/corrects ball 2 from going out of canvas
-  if (ball2.posX >= width - (ball2.diameter / 2)) {
-    ball2.speedX = ball2.speedX * -1;
-    ball2.posX = width - (ball2.diameter / 2);
-  } else if (ball2.posX < ball2.diameter / 2) {
-    ball2.posX = (ball2.diameter / 2);
-    ball2.speedX = ball2.speedX * -1;
-  }
- if (ball2.posY >= height - (ball2.diameter / 2)) {
-    ball2.speedY = ball2.speedY * -1;
-    ball2.posY = height - (ball2.diameter / 2);
-  } else if (ball2.posY < ball2.diameter / 2) {
-    ball2.posY = (ball2.diameter / 2);
-    ball2.speedY = ball2.speedY * -1;
-  }
-  
-  //colour of ball 2
-  fill(0, 255, 255);
-  noStroke();
-  ellipse(ball2.posX, ball2.posY, ball2.diameter);
+  //makes sure balls stay inside border
+  ball1.borderCheck();
+  ball2.borderCheck();
 }
- 
- 
