@@ -39,8 +39,8 @@ var ball1 = {
 var ball2 = {
   posX: 200,
   posY: 200,
-  speedX: -5,
-  speedY: 8,
+  speedX: -8,
+  speedY: 5,
   diameter: 80,
   movePos: function() {
     this.posY = this.posY + this.speedY;
