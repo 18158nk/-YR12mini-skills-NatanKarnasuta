@@ -4,6 +4,7 @@
 //*****************/
 var ballsArray = [];
 var speedArray = [10, 9, 8, 7, 6, -6, -7, -8, -9, -10];
+const ballcap = [10];
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
@@ -13,7 +14,7 @@ function setup() {
   slider.position(10, 10);
   slider.style('width', '100px');
 
-  for (var i = 0; i < 15; i++) {
+  for (var i = 0; i < ballcap; i++) {
     ballsArray[i] = {
       posX: width / 2,
       posY: height / 2,
