@@ -59,10 +59,19 @@ function setup() {
       }
     }
   }
+
+
+
 }
+
+
+
+
 
 function draw() {
   background(255, 255, 255, 75);
+
+
 
   for (var i = 0; i < ballsArray.length; i++) {
     ballsArray[i].movePos()
