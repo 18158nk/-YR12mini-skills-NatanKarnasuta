@@ -108,11 +108,3 @@ function createBall(_ballAmount, _diameter) {
     }
   }
 }
-
-//Scoreboard
-function scoreBoard() {
-  scoreText.html("Score : " + score)
-  scoreText.position(10, 20)
-  missesText.html("Misses : " + misses)
-  missesText.position(10, 10)
-}
